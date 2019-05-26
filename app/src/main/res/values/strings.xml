@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">News_API</string>
+    <string name="get_news">get news</string>
+</resources>
