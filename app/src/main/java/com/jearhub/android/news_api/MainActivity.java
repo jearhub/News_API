@@ -3,6 +3,7 @@ package com.jearhub.android.news_api;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView ( R.layout.activity_main );
 
         mTextNews = findViewById ( R.id.txtNews );
+        mTextNews.setMovementMethod ( new ScrollingMovementMethod () );
         Button buttonNews = findViewById ( R.id.btnNews );
 
         mQueue = Volley.newRequestQueue ( this );
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void jsonNews() {
-        String url = "https://newsapi.org/v2/top-headlines?sources=cnn&apiKey=";
+        String url = "https://newsapi.org/v2/top-headlines?country=nz&apiKey=6b501e899c964f529ae8dff435a4a3dc";
 
         JsonObjectRequest request = new JsonObjectRequest ( Request.Method.GET, url, null,
                 new Response.Listener<JSONObject> () {
@@ -56,9 +58,9 @@ public class MainActivity extends AppCompatActivity {
 
                                 String title = article.getString ( "title" );
                                 String publishedAt = article.getString ( "publishedAt" );
-                                String url = article.getString ( "url" );
+                                //String url = article.getString ( "url" );
 
-                                mTextNews.append ( title + "\n" + publishedAt + "\n" + url + "\n\n" );
+                                mTextNews.append ( title + "\n" + publishedAt + "\n\n" );
 
                             }
                         } catch (JSONException e) {
